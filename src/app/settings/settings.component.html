@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col col-lg-6">
+        <div *ngFor="let item of students" class="row">
+            <div class="col-9">{{item.Name}}</div>
+            <button [ngClass]="{'btn-outine-secondary': !item.NotHere, 'btn-secondary': item.NotHere}" class="btn col-2" (click)="toggleNotHere(item)">Absent</button>
+            <button class="btn btn-danger col-1" (click)="removeName(item.Name)">X</button>
+        </div>
+        <div>
+            <input type="text" [(ngModel)]="name">
+            <button class="btn btn-primary" (click)="addName()">Add</button>
+        </div>
+    </div>
+    <div  class="col col-lg-6">
+        <div *ngFor="let item of notAllowedNames">
+            {{item.FirstName}} - {{item.SecondName}} 
+            <button class="btn btn-danger" (click)="removeNotAllowedName(item)">Remove</button>
+        </div>
+        <div>
+            <select [(ngModel)]="firstName">
+                <option *ngFor="let item of students" [value]="item.Name">{{item.Name}}</option>
+            </select>
+            <select [(ngModel)]="secondName">
+                <option *ngFor="let item of students" [value]="item.Name">{{item.Name}}</option>
+            </select>
+            <span><button class="btn btn-primary" (click)="addNotAllowedName()">Add</button></span>
+        </div>
+    </div>
+</div>

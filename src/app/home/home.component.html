@@ -1,0 +1,14 @@
+<button (click)="toggleSettings()">Toggle Settings</button>
+@if(IsSettings)
+{
+    <app-settings></app-settings>
+}
+@else
+{
+    <div>
+        <button (click)="randomize()">Randomize</button>
+    </div>
+    <div *ngFor="let item of Pairings">
+        {{item[0]}} - {{item[1]}}
+    </div>
+}
