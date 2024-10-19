@@ -1,28 +1,34 @@
 <div class="row">
-    <div class="col col-lg-6">
+    <div class="col-12 col-lg-6">
+        <h1>Students</h1>
         <div *ngFor="let item of students" class="row">
             <div class="col-9">{{item.Name}}</div>
             <button [ngClass]="{'btn-outine-secondary': !item.NotHere, 'btn-secondary': item.NotHere}" class="btn col-2" (click)="toggleNotHere(item)">Absent</button>
             <button class="btn btn-danger col-1" (click)="removeName(item.Name)">X</button>
+            <hr class="m-0 mt-1 mb-1 p-0">
         </div>
-        <div>
-            <input type="text" [(ngModel)]="name">
-            <button class="btn btn-primary" (click)="addName()">Add</button>
+        <div class="row">
+            <input type="text" [(ngModel)]="name" class="form-control col" placeholder="New Student">
+            <button class="btn btn-primary col col-3" (click)="addName()">Add</button>
         </div>
     </div>
-    <div  class="col col-lg-6">
-        <div *ngFor="let item of notAllowedNames">
-            {{item.FirstName}} - {{item.SecondName}} 
-            <button class="btn btn-danger" (click)="removeNotAllowedName(item)">Remove</button>
+    <div  class="col-12 col-lg-6">
+        <h1>Pairings not allowed</h1>
+        <div *ngFor="let item of notAllowedNames" class="row">
+            <div class="col-9">
+                {{item.FirstName}} - {{item.SecondName}} 
+            </div>
+            <button class="btn btn-danger col-3" (click)="removeNotAllowedName(item)">X</button>
+            <hr class="m-0 mt-1 mb-1 p-0">
         </div>
-        <div>
-            <select [(ngModel)]="firstName">
+        <div class="row">
+            <select [(ngModel)]="firstName" class="form-control col">
                 <option *ngFor="let item of students" [value]="item.Name">{{item.Name}}</option>
             </select>
-            <select [(ngModel)]="secondName">
+            <select [(ngModel)]="secondName"  class="form-control col">
                 <option *ngFor="let item of students" [value]="item.Name">{{item.Name}}</option>
             </select>
-            <span><button class="btn btn-primary" (click)="addNotAllowedName()">Add</button></span>
+            <button class="btn btn-primary col col-3" (click)="addNotAllowedName()">Add</button>
         </div>
     </div>
 </div>

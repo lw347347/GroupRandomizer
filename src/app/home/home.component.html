@@ -1,14 +1,27 @@
-<button (click)="toggleSettings()">Toggle Settings</button>
-@if(IsSettings)
-{
-    <app-settings></app-settings>
-}
-@else
-{
-    <div>
-        <button (click)="randomize()">Randomize</button>
+<div class="row m-2">
+    <div class="col-11">
+        @if(IsSettings)
+        {            
+            <button class="btn btn-primary" (click)="toggleSettings()">Home</button>
+        }
     </div>
-    <div *ngFor="let item of Pairings">
-        {{item[0]}} - {{item[1]}}
+    <div class="col-1">
+        <button class="btn btn-secondary" (click)="toggleSettings()">Settings</button>
     </div>
-}
+</div>
+
+<div class="m-2">
+    @if(IsSettings)
+    { 
+        <app-settings></app-settings>
+    }
+    @else
+    {
+        <div>
+            <button (click)="randomize()" class="btn btn-primary">Randomize</button>
+        </div>
+        <div *ngFor="let item of Pairings" class="fs-1">
+            {{item[0]}} - {{item[1]}}
+        </div>
+    }
+</div>

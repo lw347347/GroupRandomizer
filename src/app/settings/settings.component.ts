@@ -41,6 +41,7 @@ export class SettingsComponent {
   public addNotAllowedName() {
     this.namesService.addNotAllowedName(this.firstName, this.secondName);
     this.notAllowedNames = this.namesService.getNotAllowedNames();
+    this.secondName = "";
   }
 
   public removeNotAllowedName(notAllowedTogether: NotAllowedTogether) {

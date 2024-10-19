@@ -43,10 +43,12 @@ export class NamesService {
   }
 
   removeNotAllowedTogether(notAllowedTogether: NotAllowedTogether) {
-    const index = this.getNotAllowedNames().findIndex(x => x.FirstName === notAllowedTogether.FirstName 
+    let notAllowedTogetherList = this.getNotAllowedNames();
+    const index = notAllowedTogetherList.findIndex(x => x.FirstName === notAllowedTogether.FirstName 
       && x.SecondName === notAllowedTogether.SecondName);
     if (index > -1) {
-      localStorage.setItem('notAllowedNames', JSON.stringify(this.getNotAllowedNames().splice(index, 1)));
+      notAllowedTogetherList.splice(index, 1)
+      localStorage.setItem('notAllowedNames', JSON.stringify(notAllowedTogetherList));
     }
   }
   
