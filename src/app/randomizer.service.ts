@@ -50,7 +50,7 @@ export class RandomizerService {
 
           // Get a random pairing
           const index = Math.floor(Math.random() * allowedGroups.length);
-          pairings[allowedGroups[index]][1] += " - " + name;
+          pairings[allowedGroups[index]][2] += name;
 
           return pairings;
         } else if (possibleNames.length == 0) {
@@ -66,7 +66,7 @@ export class RandomizerService {
 
         usedNames.push(name);
         usedNames.push(randomName);
-        pairings.push([name, randomName]);
+        pairings.push([name, randomName, ""]);
       }
     }
 
