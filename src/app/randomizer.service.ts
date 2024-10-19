@@ -30,7 +30,11 @@ export class RandomizerService {
 
         if (names.length - usedNames.length == 1) {
           // There's an odd number of names
-          pairings.push([name, ""]);
+          
+          // Get a random pairing
+          const index = Math.floor(Math.random() * pairings.length);
+          pairings[index][1] += " - " + name;
+
           return pairings;
         } else if (possibleNames.length == 0) {
           alert("There are no possible pairings for " + name + ". Please remove some restrictions or try again.");
