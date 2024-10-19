@@ -29,11 +29,28 @@ export class RandomizerService {
         const possibleNames = this.getPossibleNames(name, names, usedNames, notAllowedNames);
 
         if (names.length - usedNames.length == 1) {
-          // There's an odd number of names
+          // There's an odd number of names, so put the name as a third person
           
+          // Get the groups that are allowed
+          let allowedGroups: number[] = [];
+          const namesNotAllowed = notAllowedNames.filter(x => x.FirstName == name).concat(notAllowedNames.filter(x => x.SecondName == name));
+          let iCount = 0;
+          for (let group of pairings) {
+            if (!(namesNotAllowed.map(x => x.FirstName).includes(group[0])
+            || namesNotAllowed.map(x => x.SecondName).includes(group[0]))) {
+              allowedGroups.push(iCount);
+            }
+            iCount++
+          }
+
+          if (allowedGroups.length == 0) {
+            alert("There are no possible pairings for " + name + ". Please remove some restrictions or try again.");
+            return [];
+          }
+
           // Get a random pairing
-          const index = Math.floor(Math.random() * pairings.length);
-          pairings[index][1] += " - " + name;
+          const index = Math.floor(Math.random() * allowedGroups.length);
+          pairings[allowedGroups[index]][1] += " - " + name;
 
           return pairings;
         } else if (possibleNames.length == 0) {
